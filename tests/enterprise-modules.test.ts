@@ -4,28 +4,46 @@ import type { AuthContext } from "@/lib/auth/context";
 
 describe("Enterprise Modules - Transport Fleet Operations", () => {
   it("calculates bus seat occupancy and remaining capacity accurately", () => {
-    const busCapacity = 42;
+    const busCapacity = 45;
     const enrolledStudents = 38;
     const occupancyPercent = Math.round((enrolledStudents / busCapacity) * 100);
     const seatsRemaining = busCapacity - enrolledStudents;
 
-    expect(occupancyPercent).toBe(90);
-    expect(seatsRemaining).toBe(4);
+    expect(occupancyPercent).toBe(84);
+    expect(seatsRemaining).toBe(7);
     expect(seatsRemaining > 0).toBe(true);
   });
 
-  it("validates ordered sequence of bus stops", () => {
+  it("validates ordered sequence of bus stops for SKNSITS Lonavala Route 1", () => {
     const stops = [
-      { name: "Bandra Station (W)", time: "07:15 AM", order: 1 },
-      { name: "Khar Gymkhana", time: "07:30 AM", order: 2 },
-      { name: "Santacruz Signal", time: "07:45 AM", order: 3 },
-      { name: "Campus Gate 1", time: "08:10 AM", order: 4 },
+      { name: "Swargate Bus Stand (Opp. Natraj)", time: "06:30 AM", order: 1, lat: 18.5018, lng: 73.8586 },
+      { name: "Deccan Gymkhana (Goodluck Chowk)", time: "06:45 AM", order: 2, lat: 18.5173, lng: 73.8415 },
+      { name: "Chandani Chowk Flyover", time: "07:08 AM", order: 3, lat: 18.5074, lng: 73.7845 },
+      { name: "Bavdhan Highway Junction", time: "07:15 AM", order: 4, lat: 18.5195, lng: 73.7712 },
+      { name: "Wakad Bridge (Bhumkar Chowk)", time: "07:30 AM", order: 5, lat: 18.5996, lng: 73.7578 },
+      { name: "Somatane Phata (Old NH 48)", time: "07:55 AM", order: 6, lat: 18.7118, lng: 73.6672 },
+      { name: "SKNSITS Lonavala Campus Gate 1", time: "08:30 AM", order: 7, lat: 18.734103, lng: 73.427735 },
     ];
 
     expect(stops[0].order).toBe(1);
-    expect(stops[stops.length - 1].order).toBe(4);
-    expect(stops[0].name).toBe("Bandra Station (W)");
-    expect(stops[stops.length - 1].name).toBe("Campus Gate 1");
+    expect(stops[stops.length - 1].order).toBe(7);
+    expect(stops[0].name).toBe("Swargate Bus Stand (Opp. Natraj)");
+    expect(stops[stops.length - 1].name).toBe("SKNSITS Lonavala Campus Gate 1");
+    // Verify valid geographic coordinates along Pune-Lonavala corridor
+    expect(stops[stops.length - 1].lat).toBeCloseTo(18.7341, 3);
+    expect(stops[stops.length - 1].lng).toBeCloseTo(73.4277, 3);
+  });
+
+  it("verifies transport is optional: only enrolled students receive pass allocations", () => {
+    const allStudents = [
+      { id: "std-1", name: "Varun Kulkarni", usesCollegeBus: true, stopName: "Chandani Chowk Flyover" },
+      { id: "std-2", name: "Aarav Patil", usesCollegeBus: false, stopName: null },
+      { id: "std-3", name: "Kunal Deshmukh", usesCollegeBus: true, stopName: "Wakad Bridge" },
+    ];
+
+    const allocated = allStudents.filter(s => s.usesCollegeBus);
+    expect(allocated.length).toBe(2);
+    expect(allocated.some(s => s.name === "Aarav Patil")).toBe(false);
   });
 });
 

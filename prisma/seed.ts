@@ -535,20 +535,23 @@ async function main() {
     },
   });
 
-  // ── Transport / Buses ───────────────────────────────────────────────────
+  // ── Transport / Buses (SKNSITS Lonavala Campus Fleet) ──────────────────
   const route1 = await db.transportRoute.create({
     data: {
       schoolId: school.id,
-      name: "Route 1 - Western Express",
+      name: "Route 1: Swargate – Kothrud – Wakad – SKNSITS Lonavala",
       code: "RTE-01",
-      startPoint: "Bandra West",
-      endPoint: "Campus Gate 1",
-      fareAmount: 12000,
+      startPoint: "Swargate Bus Stand",
+      endPoint: "SKNSITS Lonavala Campus Gate 1",
+      fareAmount: 15000,
       stops: [
-        { name: "Bandra Station (W)", time: "07:15 AM", order: 1 },
-        { name: "Khar Gymkhana", time: "07:30 AM", order: 2 },
-        { name: "Santacruz Signal", time: "07:45 AM", order: 3 },
-        { name: "Campus Gate 1", time: "08:10 AM", order: 4 },
+        { name: "Swargate Bus Stand (Opp. Natraj)", time: "06:30 AM", order: 1, lat: 18.5018, lng: 73.8586, landmark: "Swargate ST Stand" },
+        { name: "Deccan Gymkhana (Goodluck Chowk)", time: "06:45 AM", order: 2, lat: 18.5173, lng: 73.8415, landmark: "FC Road Junction" },
+        { name: "Chandani Chowk Flyover", time: "07:08 AM", order: 3, lat: 18.5074, lng: 73.7845, landmark: "Paud Road Expressway Entry" },
+        { name: "Bavdhan Highway Junction", time: "07:15 AM", order: 4, lat: 18.5195, lng: 73.7712, landmark: "Near D-Mart Bavdhan" },
+        { name: "Wakad Bridge (Bhumkar Chowk)", time: "07:30 AM", order: 5, lat: 18.5996, lng: 73.7578, landmark: "Hinjawadi Flyover Underpass" },
+        { name: "Somatane Phata (Old NH 48)", time: "07:55 AM", order: 6, lat: 18.7118, lng: 73.6672, landmark: "Talegaon Highway Cut" },
+        { name: "SKNSITS Lonavala Campus Gate 1", time: "08:30 AM", order: 7, lat: 18.734103, lng: 73.427735, landmark: "Kusgaon Bk, Off Expressway" },
       ],
     },
   });
@@ -556,27 +559,73 @@ async function main() {
   const route2 = await db.transportRoute.create({
     data: {
       schoolId: school.id,
-      name: "Route 2 - Eastern Link",
+      name: "Route 2: Pune Station – Pimpri – Nigdi – SKNSITS Lonavala",
       code: "RTE-02",
-      startPoint: "Powai Galleria",
-      endPoint: "Campus Gate 2",
-      fareAmount: 14000,
+      startPoint: "Pune Railway Station",
+      endPoint: "SKNSITS Lonavala Campus Gate 1",
+      fareAmount: 14500,
       stops: [
-        { name: "Hiranandani Gardens", time: "07:10 AM", order: 1 },
-        { name: "JVLR Junction", time: "07:25 AM", order: 2 },
-        { name: "Marol Naka", time: "07:40 AM", order: 3 },
-        { name: "Campus Gate 2", time: "08:05 AM", order: 4 },
+        { name: "Pune Railway Station (Sasoon Road)", time: "06:30 AM", order: 1, lat: 18.5284, lng: 73.8744, landmark: "Central Railway Station" },
+        { name: "Shivajinagar Bus Terminus", time: "06:42 AM", order: 2, lat: 18.5314, lng: 73.8446, landmark: "Old Mumbai-Pune Highway" },
+        { name: "Khadki Bazar / Railway Crossing", time: "06:55 AM", order: 3, lat: 18.5623, lng: 73.8317, landmark: "Khadki Cantonment" },
+        { name: "Pimpri Deluxe Chowk", time: "07:12 AM", order: 4, lat: 18.6279, lng: 73.8009, landmark: "Pimpri Flyover" },
+        { name: "Chinchwad Station (Elpro Chowk)", time: "07:22 AM", order: 5, lat: 18.6387, lng: 73.7915, landmark: "Chinchwad Station Bridge" },
+        { name: "Nigdi Bhakti Shakti Flag Ground", time: "07:35 AM", order: 6, lat: 18.6575, lng: 73.7656, landmark: "Bhakti Shakti Flyover" },
+        { name: "Dehu Road Phata", time: "07:48 AM", order: 7, lat: 18.6811, lng: 73.7289, landmark: "Cantonment Junction" },
+        { name: "SKNSITS Lonavala Campus Gate 1", time: "08:35 AM", order: 8, lat: 18.734103, lng: 73.427735, landmark: "Kusgaon Bk, Off Expressway" },
       ],
     },
   });
 
+  const route3 = await db.transportRoute.create({
+    data: {
+      schoolId: school.id,
+      name: "Route 3: Bhosari – Nashik Phata – Ravet – SKNSITS Lonavala",
+      code: "RTE-03",
+      startPoint: "Bhosari Dighi Road Chowk",
+      endPoint: "SKNSITS Lonavala Campus Gate 1",
+      fareAmount: 14000,
+      stops: [
+        { name: "Bhosari Dighi Road Chowk", time: "06:40 AM", order: 1, lat: 18.6256, lng: 73.8492, landmark: "Bhosari MIDC Corner" },
+        { name: "Nashik Phata BRT Hub", time: "06:55 AM", order: 2, lat: 18.6045, lng: 73.8219, landmark: "Kasarwadi Metro Station" },
+        { name: "Ravet Hanging Bridge / BRTS", time: "07:15 AM", order: 3, lat: 18.6472, lng: 73.7547, landmark: "Ravet Chowk" },
+        { name: "Kiwale (Expressway Zero Point)", time: "07:25 AM", order: 4, lat: 18.6653, lng: 73.7381, landmark: "Expressway Starting Point" },
+        { name: "Urse Toll Plaza (Vadgaon)", time: "07:45 AM", order: 5, lat: 18.7456, lng: 73.6152, landmark: "Urse Toll Plaza" },
+        { name: "Kamshet Highway Junction", time: "08:12 AM", order: 6, lat: 18.7594, lng: 73.5186, landmark: "Old Mumbai Highway Junction" },
+        { name: "SKNSITS Lonavala Campus Gate 1", time: "08:30 AM", order: 7, lat: 18.734103, lng: 73.427735, landmark: "Kusgaon Bk, Off Expressway" },
+      ],
+    },
+  });
+
+  const route4 = await db.transportRoute.create({
+    data: {
+      schoolId: school.id,
+      name: "Route 4: Talegaon – Kamshet – Lonavala Local – SKNSITS",
+      code: "RTE-04",
+      startPoint: "Talegaon Dabhade Town",
+      endPoint: "SKNSITS Lonavala Campus Gate 1",
+      fareAmount: 9500,
+      stops: [
+        { name: "Talegaon Dabhade Town (Maruti Mandir)", time: "07:15 AM", order: 1, lat: 18.7297, lng: 73.6738, landmark: "Talegaon Town Center" },
+        { name: "Wadgaon Maval Tehsil Office", time: "07:35 AM", order: 2, lat: 18.7431, lng: 73.6394, landmark: "Wadgaon Court Junction" },
+        { name: "Kamshet Railway Station Chowk", time: "07:50 AM", order: 3, lat: 18.7612, lng: 73.5251, landmark: "Kamshet Bazar" },
+        { name: "Malavli / Karla Caves Phata", time: "08:05 AM", order: 4, lat: 18.7618, lng: 73.4735, landmark: "Karla Caves Junction" },
+        { name: "Lonavala Kumar Resort / ST Stand", time: "08:18 AM", order: 5, lat: 18.7512, lng: 73.4078, landmark: "Lonavala City Center" },
+        { name: "Valvan Dam Phata", time: "08:24 AM", order: 6, lat: 18.7450, lng: 73.4190, landmark: "Valvan Lake Overbridge" },
+        { name: "SKNSITS Lonavala Campus Gate 1", time: "08:35 AM", order: 7, lat: 18.734103, lng: 73.427735, landmark: "Kusgaon Bk, Off Expressway" },
+      ],
+    },
+  });
+
+  // Assign Bus Fleet to Routes
   await db.transportVehicle.create({
     data: {
       routeId: route1.id,
-      registrationNo: "MH-02-AZ-4412",
-      driverName: "Ramesh Pawar",
-      driverPhone: "+91 98201 12345",
-      capacity: 42,
+      registrationNo: "MH-14-AZ-2041",
+      driverName: "Santosh Shinde",
+      driverPhone: "+91 98224 51829",
+      driverLicense: "MH-14-2015-004812",
+      capacity: 45,
       status: "ACTIVE",
     },
   });
@@ -584,23 +633,48 @@ async function main() {
   await db.transportVehicle.create({
     data: {
       routeId: route2.id,
-      registrationNo: "MH-03-CD-8899",
-      driverName: "Suresh Patil",
-      driverPhone: "+91 98334 56789",
-      capacity: 38,
+      registrationNo: "MH-14-AZ-3088",
+      driverName: "Rameshwar Jadhav",
+      driverPhone: "+91 97631 82940",
+      driverLicense: "MH-14-2012-009931",
+      capacity: 45,
       status: "ACTIVE",
     },
   });
 
-  // Assign Arjun to Route 1 and Sara to Route 2
+  await db.transportVehicle.create({
+    data: {
+      routeId: route3.id,
+      registrationNo: "MH-14-AZ-4112",
+      driverName: "Balasaheb Gaikwad",
+      driverPhone: "+91 94220 73911",
+      driverLicense: "MH-14-2016-003310",
+      capacity: 42,
+      status: "ACTIVE",
+    },
+  });
+
+  await db.transportVehicle.create({
+    data: {
+      routeId: route4.id,
+      registrationNo: "MH-14-AZ-5520",
+      driverName: "Prakash More",
+      driverPhone: "+91 98812 64503",
+      driverLicense: "MH-14-2010-008144",
+      capacity: 40,
+      status: "ACTIVE",
+    },
+  });
+
+  // Optional Student Transport Allocation (Only bus opted-in students)
   if (students.length >= 2) {
     await db.studentTransport.create({
       data: {
         studentId: students[0].id,
         routeId: route1.id,
-        stopName: "Bandra Station (W)",
-        pickupTime: "07:15 AM",
-        dropTime: "03:45 PM",
+        stopName: "Chandani Chowk Flyover",
+        pickupTime: "07:08 AM",
+        dropTime: "05:15 PM",
       },
     });
 
@@ -608,9 +682,9 @@ async function main() {
       data: {
         studentId: students[1].id,
         routeId: route2.id,
-        stopName: "Hiranandani Gardens",
-        pickupTime: "07:10 AM",
-        dropTime: "03:50 PM",
+        stopName: "Nigdi Bhakti Shakti Flag Ground",
+        pickupTime: "07:35 AM",
+        dropTime: "05:10 PM",
       },
     });
   }
