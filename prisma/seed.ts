@@ -580,14 +580,14 @@ async function main() {
   const route3 = await db.transportRoute.create({
     data: {
       schoolId: school.id,
-      name: "Route 3: Bhosari – Nashik Phata – Ravet – SKNSITS Lonavala",
+      name: "Route 3: Kasarwadi – Nashik Phata – Ravet – SKNSITS Lonavala",
       code: "RTE-03",
-      startPoint: "Bhosari Dighi Road Chowk",
+      startPoint: "Kasarwadi Station Chowk",
       endPoint: "SKNSITS Lonavala Campus Gate 1",
       fareAmount: 14000,
       stops: [
-        { name: "Bhosari Dighi Road Chowk", time: "06:40 AM", order: 1, lat: 18.6256, lng: 73.8492, landmark: "Bhosari MIDC Corner" },
-        { name: "Nashik Phata BRT Hub", time: "06:55 AM", order: 2, lat: 18.6045, lng: 73.8219, landmark: "Kasarwadi Metro Station" },
+        { name: "Kasarwadi Station (Old Mumbai-Pune Hwy)", time: "06:45 AM", order: 1, lat: 18.5986, lng: 73.8242, landmark: "Kasarwadi Railway Station / Metro Hub" },
+        { name: "Nashik Phata BRT Hub", time: "06:55 AM", order: 2, lat: 18.6045, lng: 73.8219, landmark: "Nashik Phata Flyover Junction" },
         { name: "Ravet Hanging Bridge / BRTS", time: "07:15 AM", order: 3, lat: 18.6472, lng: 73.7547, landmark: "Ravet Chowk" },
         { name: "Kiwale (Expressway Zero Point)", time: "07:25 AM", order: 4, lat: 18.6653, lng: 73.7381, landmark: "Expressway Starting Point" },
         { name: "Urse Toll Plaza (Vadgaon)", time: "07:45 AM", order: 5, lat: 18.7456, lng: 73.6152, landmark: "Urse Toll Plaza" },
